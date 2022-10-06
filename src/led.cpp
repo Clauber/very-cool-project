@@ -1,11 +1,11 @@
 #include "led.h"
 
-//LED Setup
-#define red 0
-#define green 4
-#define blue 5
+// LED Setup
+#define red 14
+#define green 0
+#define blue 16
 
-//Color changing functions
+// Color changing functions
 void turnRed()
 {
   analogWrite(red, 255);
@@ -48,8 +48,9 @@ void turnOff()
   analogWrite(blue, 0);
 }
 
-//State options
-enum StateOptions {
+// State options
+enum StateOptions
+{
   RED,
   BLUE,
   YELLOW,
@@ -59,52 +60,64 @@ enum StateOptions {
 
 StateOptions state = OFF;
 
-//Setter
-void onStateChange (String newState){
+// Setter
+void onStateChange(String newState)
+{
+  newState.toUpperCase();
   StateOptions tempState = OFF;
-  if(newState == "RED"){
+  if (newState == "RED")
+  {
     tempState = RED;
     turnRed();
   }
-  else if(newState == "BLUE"){
+  else if (newState == "BLUE")
+  {
     tempState = BLUE;
     turnBlue();
   }
-  else if(newState == "YELLOW"){
+  else if (newState == "YELLOW")
+  {
     tempState = YELLOW;
     turnYellow();
   }
-  else if(newState == "GREEN"){
-    tempState = RED;
+  else if (newState == "GREEN")
+  {
+    tempState = GREEN;
     turnGreen();
   }
-  else if(newState == "OFF"){
+  else if (newState == "OFF")
+  {
     turnOff();
   }
   state = tempState;
 };
 
-
-
-//Getter
-String getLEDState (){
-  if(state == RED){
+// Getter
+String getLEDState()
+{
+  if (state == RED)
+  {
     return "RED";
   }
-  else if(state == BLUE){
+  else if (state == BLUE)
+  {
     return "BLUE";
   }
-  else if(state == YELLOW){
+  else if (state == YELLOW)
+  {
     return "YELLOW";
   }
-  else if(state == GREEN){
+  else if (state == GREEN)
+  {
     return "GREEN";
   }
-  else{
+  else
+  {
     return "OFF";
   }
 }
 
-void letBegin(){
+void ledBegin()
+{
   turnOff();
 }
